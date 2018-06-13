@@ -1,0 +1,25 @@
+<div class="row">
+    <!-- <div class="col-md-6">
+      <ul class="list-group" *ngIf="razas!=null">
+        <li class="list-group-item" *ngFor="let raza of razas ">
+          <div>
+            <span>{{raza}}</span>
+            <button id="{{raza}}" class="btn btn-outline-primary pull-right" (click)="getImages($event,raza)">Imagenes</button>
+          </div>
+        </li>
+      </ul>
+    </div> -->
+    <div class="col-md-12 card-columns" *ngIf="perros!=null">
+        <div class="card" *ngFor="let perro of perros" style="width: 20rem;">
+            <img  *ngIf="perro.Imagenes!=null && perro.Imagenes.length>0" class="card-img-top" style="width: 20rem;height:20rem" [src]="perro.ImagenSelected" alt="Card image cap">
+            <div class="card-block">
+              <h4 class="card-title">{{perro.Raza}}</h4>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <button  class="btn btn-outline-primary pull-right" (click)="getImages(perro.Raza)">Imagenes</button>
+            </div>
+          </div>
+    </div>
+    <div *ngIf="perros==null" class="alert alert-warning" role="alert">
+        <strong>Cargando...</strong> por favor espere
+      </div>
+  </div>

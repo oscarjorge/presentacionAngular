@@ -1,0 +1,45 @@
+<div class="row jumbotron">
+  <div class="col-md-12">
+    <h4>Componentes</h4>
+  </div>
+
+  <div class="col-md-6">
+    <p>Los componentes es la pieza fundamental de Angular. Toda aplicación de Angular se basa en un árbol de componentes que
+      van llamandose unos a otros.</p>
+    <p>Un componente tiene tres archivos fundamentales.</p>
+    <ul>
+      <li>
+        El <b>css</b>: es donde se aplican los estilos exclusivos del componentes.
+      </li>
+      <li>
+        <p>El <b>html</b>: Equivale a lo que conocemos por "vista" en la arquitectura MVC. Aquí puedes meter código html y puedes llamar
+          a otros componentes.</p>
+        <p>No se pueden meter (angular las obvia) etiquetas script pues no tiene sentido. Toda la lógica ha de estar en el ts.</p>
+        <p>Tampoco tendría sentido aplicar etiquetas body o head pues el propio componente siempre está en el body del index
+          principal de la aplicación.</p>
+
+      </li>
+      <li>
+        El <b>ts</b>: Equivale al controlador de MVC.
+      </li>
+    </ul>
+    
+  </div>
+  <div class="col-md-6">
+    <h5>Flujo de información entre los elementos del componente</h5>
+    <img src="assets/flujoVistaModelo.png" style="width:25rem; height:10rem" />
+    
+    <p><b>Enlace de propiedad.</b> Establece el valor de la propiedad al atributo html</p>
+    <p [hidden]="!visible">Este texto se ve porque el valor de la propiedad asociada al atributo hidden está a true</p>
+    <p [hidden]="visible">Este texto se ve porque el valor de la propiedad asociada al atributo hidden está a false</p>
+
+    <p><b>Interpolación.</b> Simplemente muestra el valor de una propiedad: {{visible}}</p>
+    
+    <p><b>Evento:</b> presionando el botón lanza el evento click que cambia el valor de la propiedad</p>
+    <button class="btn btn-primary" (click)="changeVisible()">Cambia la propiedad</button>
+    
+    <p><b>Doble binding</b></p>
+    <input type="checkbox" [(ngModel)]="visible">
+
+  </div>
+</div>

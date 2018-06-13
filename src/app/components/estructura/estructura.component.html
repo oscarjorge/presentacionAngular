@@ -1,0 +1,171 @@
+
+<div class="card">
+    <div class="row">
+        <div class="col-md-8">
+            <h4>Flujo de arranque</h4>
+        </div>
+        <div class="col-md-4">
+            <span class="fa fa-plus pull-right" style="cursor:pointer" data-toggle="collapse" href="#flujo"></span>
+        </div>
+    </div>
+    <div class="jumbotron collapse" id="flujo">
+        <ul>
+            <ol><b>1</b>. En el index.html tenemos un componente raíz de la aplicación "app-root".</ol>
+            <ol><b>2</b>. El archivo por el que Webpack comienza a producir los bundles es el main.ts</ol>
+            <ol><b>3</b>. Al servir la aplicación (ng serve), o al llevarla a producción (ng build) la herramienta Webpack genera
+                los paquetes (bundles) de código del proyecto y coloca los correspondientes scripts en el index.html, para
+                que todo funcione.</ol>
+            <ol><b>4</b>. Dentro del main.ts encontramos un import del módulo principal (AppModule) y la llamada al sistema de
+                arranque (bootstrapModule) en la que pasamos por parámetro el módulo principal de la aplicación.</ol>
+            <ol><b>5</b>. En el módulo principal se importa el componente raíz (AppComponent) y en el decorador @NgModule se
+                indica que este componente forma parte del bootstrap.</ol>
+            <ol><b>6</b>. El código del componente raíz tiene el selector "app-root", que es la etiqueta que aparecía en el index.html.</ol>
+            <ol><b>7</b>. El template del componente raíz, contiene el HTML que se visualiza al poner en marcha la aplicación
+                en el navegador.</ol>
+        </ul>
+        <a href="https://www.desarrolloweb.com/articulos/codigo-aplicacion-angular.html">Referencia</a>
+    </div>
+</div>
+
+<div class="">
+    <div class="row">
+        <div class="col-md-8">
+            <h4>Estructura del proyecto</h4>
+        </div>
+        <div class="col-md-4">
+            <div class="btn-group pull-right" role="group" aria-label="Basic example">
+                <button class="btn btn-outline-primary" (click)="tree.treeModel.expandAll()">Expand</button>
+                <button class="btn btn-outline-primary" (click)="tree.treeModel.collapseAll()">Collapse</button>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <tree-root #tree [nodes]="nodes">
+                    <ng-template #treeNodeTemplate let-node let-index="index">
+                        <span (click)="onEvent(node)" on>{{ node.data.name }}</span>
+
+                    </ng-template>
+                </tree-root>
+            </div>
+
+
+        </div>
+        <div class="col-md-7 card card-block" *ngIf="elemento != null && elemento != ''">
+            <div *ngIf="elemento == 'e2e'">
+                <h4>e2e</h4>
+                En esta carpeta se colocan los archivos para la realización de las pruebas "end to end". Nunca lo he utilizado
+            </div>
+            <div *ngIf="elemento == 'node_modules'">
+                <h4>node_modules</h4>
+                Es la carpeta donde npm va colocando todas las dependencias del proyecto, es decir, el código de todas las librerías o componentes
+                que estemos usando para basarnos en el desarrollo de una aplicación. Por ejemplo, el propio Angular es una
+                dependencia.
+            </div>
+            <div *ngIf="elemento == 'dist'">
+                <h4>dist</h4>
+                Es la carpeta donde donde se colocarán los archivos distribuibles para publicar una aplicación. Super fácil: básicamente
+                -->
+                <a href="https://github.com/angular/angular-cli/wiki/build">ng build</a>.
+            </div>
+            <div *ngIf="elemento == 'src'">
+                <h4>src</h4>
+                Es la carpeta donde están las fuentes del proyecto. Esta carpeta es la que usaremos para desarrollar la aplicación y donde
+                iremos colocando componentes y otro tipo de artefactos necesarios para poner en marcha nuestras ideas.
+            </div>
+            <div *ngIf="elemento == '.angular-cli.json'">
+                <h4>.angular-cli.json</h4>
+                Entre otras cosas se pueden meter aquí los scripts y css que serán incluidos en el build. <a href="https://github.com/angular/angular-cli/wiki/angular-cli">Referencia completa</a>
+            </div>
+            <div *ngIf="elemento == 'package.json'">
+                <h4>package.json</h4>
+                <p>Aquí aparecen las dependencias del proyecto. Cuando instalas algo con npm aparece reflejado aquí.</p>
+                <p>También se pueden personalizar y explicitar aquí los comandos de angular ng</p>
+                <p><a href="https://github.com/angular/angular/blob/master/package.json">Ejemplo</a></p>
+            </div>
+            <div *ngIf="elemento == 'index.html'">
+                <h4>index.html</h4>
+                <p>Es el comienzo en html de toda la aplicación.</p>
+                <p>Aquí se pueden meter los scripts y css necesarios, aunque es mejor hacerlo en .angular-cli.json</p>
+                <p>En el body nos encontramos con el siguiente selector de componente app-root. Esto muestra el componente raíz
+                    cuyo selector es app-root</p>
+            </div>
+            <div *ngIf="elemento == 'main.ts'">
+                <h4>main.ts</h4>
+                <p>Webpack, que es quien compila y transpila toda la aplicación, se encarga en primer lugar de ejecutar este
+                    archivo.
+                </p>
+                <p>Es el punto de arranque, se importan varias librerías externas necesarias y nuestro componente de inicio,
+                    que es el AppModule. Después se lanza con la instrucción:</p>
+                <p>platformBrowserDynamic().bootstrapModule(AppModule);</p>
+            </div>
+            <div *ngIf="elemento == 'assets'">
+                <h4>index.html</h4>
+                <p>Aquí se meten todos los archivos externos que necesitemos como iconos, imagenes,...</p>
+            </div>
+            <div *ngIf="elemento == 'favicon.ico'">
+                <h4>favicon.ico</h4>
+                <p>Pues el icono de la aplicación</p>
+            </div>
+            <div *ngIf="elemento == 'styles.css'">
+                <h4>styles.css</h4>
+                <p>La hoja de estilos principal de la aplicación. Cada componente puede tener una específica si se quiere que
+                    prevalece sobre esta.</p>
+                <p>Esta hoja de estilos es referenciada en el archivo angular.cli.json y ahí se establece el orden de carga
+                    respecto al resto de hojas de estilo, como por ejemplo, la de bootstrap</p>
+            </div>
+            <div *ngIf="elemento == 'app'">
+                <h4>app</h4>
+                <p>Aquí es donde se mete toda la chicha.</p>
+            </div>
+            <div *ngIf="elemento == 'components'">
+                <h4>components</h4>
+                <p>Aquí es donde se meten los componentes de la aplicación.</p>
+            </div>
+            <div *ngIf="elemento == 'services'">
+                <h4>services</h4>
+                <p>Aquí es donde se meten los servicios de la aplicación.</p>
+            </div>
+            <div *ngIf="elemento == 'interfaces'">
+                <h4>interfaces</h4>
+                <p>Aquí es donde se meten las interfaces de la aplicación.</p>
+            </div>
+            <div *ngIf="elemento == 'pipes'">
+                <h4>pipes</h4>
+                <p>Aquí es donde se meten los pipes de la aplicación.</p>
+            </div>
+            <div *ngIf="elemento == 'app.module.ts'">
+                <h4>app.module.ts</h4>
+                <p>De entre todos los imports que se hace en el main.ts hay uno fundamental, que nos sirve para tirar del hilo
+                    y ver qué es lo que está pasando por abajo, para hacer posible que todo comience a funcionar. Se trata
+                    de app.module.ts, que podemos considerar como el módulo principal de la aplicación.</p>
+                <p>Encontramos el import al componente raíz de la aplicación (esa etiqueta HTML no-estándar que aparecía en
+                    el BODY del index).</p>
+                <p>import AppComponent from './app.component';</p>
+
+            </div>
+            <div *ngIf="elemento == 'app.component.html'">
+                <h4>app.component.html</h4>
+                <p>Equivale a lo que conocemos por "vista" en la arquitectura MVC.</p>
+                <p>Aquí puedes meter cualquier tipo de código html y puedes llamar a otros componentes.</p>
+            </div>
+            <div *ngIf="elemento == 'app.component.ts'">
+                <h4>app.component.ts</h4>
+                <p>Equivale a lo que conocemos por "controlador" en la arquitectura MVC.</p>
+                <p>En el decorador Component está 'selector', templateUrl:'./app.component.html', stylesUrls:['./app.component.css']</p>
+            </div>
+            <div *ngIf="elemento == 'app.component.css'">
+                <h4>app.component.css</h4>
+                <p>Aquí se pueden meter los estilos específicos del componente.</p>
+            </div>
+            <div *ngIf="elemento == 'app.component.spec.ts'">
+                <h4>app.component.spec.ts</h4>
+                <p>Archivo para pruebas.</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+
+<h4>ngClass</h4>
+<p>Nos sirve para aplicar clases a un elemento del DOM</p>
+<p>Este botón tiene un ngClass que aplica la clase 'si' si la variable 'estadoPositivo' es true y una no si la variable es 'false'. Además dispara un evento que cambia el valor de dicha variable</p>
+
+<p>
+    <button 
+      [ngClass]="{si: estadoPositivo, no: !estadoPositivo}"
+      (click)="cambiaEstado()"
+    >{{texto}}</button>
+  </p>
